@@ -1,0 +1,32 @@
+{
+  "name": "shisan_cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "shisan": "sodu bin/shisan",
+    "shisan-init": "bin/shisan-init"
+  },
+  "bin": {
+    "shisan": "bin/shisan",
+    "shisan-init": "bin/shisan-init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulSingerK/shisan_cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soulSingerK/shisan_cli/issues"
+  },
+  "homepage": "https://github.com/soulSingerK/shisan_cli#readme",
+  "dependencies": {
+    "commander": "^2.20.0"
+  },
+  "devDependencies": {
+    "glob": "^7.1.3"
+  }
+}

@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+const path = require('path')
+const fs = require('fs')
+const glob = require('glob')
+const download = require('../lib/download')
+
+program.usage('<project-name>').parse(process.argv)
+
+let projectName = program.args[0]
+
+if (!projectName) {
+  projectName.help()
+  return
+}
+
+const list = glob.sync('*')
+let rootName = path.basename(process.cwd())
+if (list.length) {
+  if (list.filter(name => {
+    const filename = path.resolve(process.cwd(), path.join('.', name))
+    const isDir = fs.lstatSync(filename).isDirectory()
+    return name.indexOf(projectName) !== -1 && isDir
+  }).length !== 0) {
+    return console.log(`项目${projectName}已经存在`)
+  }
+  rootName = projectName
+} else if (rootName === projectName) {
+  rootName = '.'
+} else {
+  rootName = projectName
+}
+
+go()
+
+function go() {
+  download(rootName).then(target => {
+    console.log(`${target} in resolve`)
+  }).catch(err => {
+    console.log(err)
+  })
+}
